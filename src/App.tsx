@@ -66,6 +66,7 @@ const capabilities = [
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrollProgress, setScrollProgress] = useState(0)
+  const pendingSectionRef = useRef<string | null>(null)
 
   useEffect(() => {
     const update = () => {
@@ -77,7 +78,46 @@ function App() {
     return () => window.removeEventListener('scroll', update)
   }, [])
 
-  const closeMenu = () => setMenuOpen(false)
+  useEffect(() => {
+    if (!menuOpen) return
+
+    const scrollY = window.scrollY
+    const { style } = document.body
+    style.position = 'fixed'
+    style.top = `-${scrollY}px`
+    style.right = '0'
+    style.left = '0'
+    style.width = '100%'
+    document.documentElement.classList.add('menu-open')
+
+    return () => {
+      document.documentElement.classList.remove('menu-open')
+      style.position = ''
+      style.top = ''
+      style.right = ''
+      style.left = ''
+      style.width = ''
+      window.scrollTo(0, scrollY)
+    }
+  }, [menuOpen])
+
+  useEffect(() => {
+    if (menuOpen || !pendingSectionRef.current) return
+
+    const targetSelector = pendingSectionRef.current
+    pendingSectionRef.current = null
+    const frame = window.requestAnimationFrame(() => {
+      document.querySelector(targetSelector)?.scrollIntoView({ behavior: 'smooth' })
+      window.history.replaceState(null, '', targetSelector)
+    })
+    return () => window.cancelAnimationFrame(frame)
+  }, [menuOpen])
+
+  const navigateFromMenu = (event: React.MouseEvent<HTMLAnchorElement>, target: string) => {
+    event.preventDefault()
+    pendingSectionRef.current = target
+    setMenuOpen(false)
+  }
 
   return (
     <div className="site-shell" id="top">
@@ -96,10 +136,10 @@ function App() {
       </header>
 
       <div className={`mobile-nav ${menuOpen ? 'is-open' : ''}`}>
-        <a href="#vision" onClick={closeMenu}>愿景 <span>01</span></a>
-        <a href="#work" onClick={closeMenu}>产品 <span>02</span></a>
-        <a href="#capability" onClick={closeMenu}>能力 <span>03</span></a>
-        <a href="#contact" onClick={closeMenu}>联系我们 <span>04</span></a>
+        <a href="#vision" onClick={(event) => navigateFromMenu(event, '#vision')}>愿景 <span>01</span></a>
+        <a href="#work" onClick={(event) => navigateFromMenu(event, '#work')}>产品 <span>02</span></a>
+        <a href="#capability" onClick={(event) => navigateFromMenu(event, '#capability')}>能力 <span>03</span></a>
+        <a href="#contact" onClick={(event) => navigateFromMenu(event, '#contact')}>联系我们 <span>04</span></a>
       </div>
 
       <main>
