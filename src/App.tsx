@@ -13,7 +13,7 @@ function Wordmark({ inverse = false }: { inverse?: boolean }) {
         <path d="M2 10h9l7 20 4-15h8l4 15 7-20h9L40 39H30l-4-13-4 13H12z" />
       </svg>
       <span className="wordmark__name">WEDAY</span>
-      <span className="wordmark__cn">未待科技</span>
+      <span className="wordmark__cn">维岱科技</span>
     </a>
   )
 }
@@ -155,8 +155,8 @@ function App() {
               <span className="headline-mobile">智能，不止<br />存在于<br /></span>
               <em>屏幕之内。</em>
             </h1>
-            <p className="hero__intro reveal reveal--four">未待科技是一家 AI Native 软硬件公司。我们让智能拥有感知世界、理解意图并自主行动的能力。</p>
-            <a className="text-link reveal reveal--four" href="#vision">探索未待 <Arrow /></a>
+            <p className="hero__intro reveal reveal--four">维岱科技是一家 AI Native 软硬件公司。我们让智能拥有感知世界、理解意图并自主行动的能力。</p>
+            <a className="text-link reveal reveal--four" href="#vision">探索维岱 <Arrow /></a>
           </div>
           <div className="hero__visual reveal reveal--three">
             <IntelligenceCore />
@@ -252,8 +252,8 @@ function App() {
           <p className="manifesto__line">THE FUTURE.</p>
           <p className="manifesto__line manifesto__line--accent">WE PROTOTYPE IT.</p>
           <div className="manifesto__footer">
-            <span>不是等待未来发生</span>
-            <span>而是让未来今天发生</span>
+            <span>不预测未来</span>
+            <span>亲手把它造出来</span>
           </div>
         </section>
 
@@ -263,7 +263,7 @@ function App() {
             <span>04 — 04</span>
           </div>
           <div className="contact__main">
-            <h2>一起创造<br /><em>未待之物。</em></h2>
+            <h2>一起创造<br /><em>智能的新维度。</em></h2>
             <a className="contact__button" href="mailto:hello@weday.io">
               <span>HELLO@WEDAY.IO</span><i><Arrow diagonal /></i>
             </a>
@@ -281,7 +281,7 @@ function App() {
           <a href="#top">小红书</a><a href="#top">微信公众号</a><a href="#top">LinkedIn</a>
         </div>
         <div className="site-footer__bottom">
-          <span>© 2026 未待科技</span><span>AI NATIVE / BUILT IN SHANGHAI</span><a href="#top">BACK TO TOP ↑</a>
+          <span>© 2026 维岱科技</span><span>AI NATIVE / BUILT IN SHANGHAI</span><a href="#top">BACK TO TOP ↑</a>
         </div>
       </footer>
     </div>
